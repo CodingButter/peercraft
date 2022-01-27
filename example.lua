@@ -1,5 +1,5 @@
 local PeerCraft = require "peercraft"
-local p2p = PeerCraft:new("CodingButter")
+local p2p = PeerCraft:new()
 p2p:on("connected", function()
     print("connected")
 end)
