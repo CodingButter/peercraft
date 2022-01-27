@@ -1,6 +1,8 @@
-local P2P = require "P2P"
-local p2p = P2P:new()
-
+local PeerCraft = require "peercraft"
+local p2p = PeerCraft:new("CodingButter")
+p2p:on("connected", function()
+    print("connected")
+end)
 p2p:on("peer_added", function(payload, peer)
     print(peer.username .. " joined")
 end)
@@ -16,9 +18,10 @@ local eventLoop = function()
     end
 end
 
-p2p:connect({
-    eventLoop = eventLoop,
-    lobby = "alobby",
-    room = "aroom"
-})
+for k, v in pairs(p2p.getRooms("alobby")) do
+    print(v.room .. " (" .. v.users .. ")")
+end
+
+p2p:connect("alobby", "aroom")
+p2p:attachEventLoop(eventLoop)
 
