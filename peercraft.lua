@@ -26,7 +26,7 @@ local P2P = class({
             while self.connected == true do
                 local timer = os.pullEvent("timer")
                 if timer[2] == timeId and self.id and self.lobby and self.room then
-                    self:joinRoom(self.lobby, self.room, self.password)
+                    self:joinRoom()
                     timeId = os.startTimer(60)
                 end
             end
